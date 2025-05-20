@@ -6,6 +6,7 @@
         validateRegistrationData,
     } from "$lib/api/auth";
     import { onMount } from "svelte";
+    import { socialLinks } from "../../lib/env";
 
     let username: string = "";
     let email: string = "";
@@ -219,7 +220,9 @@
                 <a href="/login">Zaloguj się.</a>
             </span>
             <span>
-                <a href="/membership">Nie wiesz skąd wziąć zaproszenie?</a>
+                <a href={socialLinks.discord}
+                    >Nie wiesz skąd wziąć zaproszenie?</a
+                >
             </span>
         </div>
     </main>
