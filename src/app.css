@@ -1,0 +1,232 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root {
+    --max-width: 856px;
+    --primary: #070709;
+    --sidebar-bg: #000000;
+
+    --secondary: #e3e3e6;
+
+    --brand: #b096ff;
+    --brand-bg: #b096ff;
+
+    --white: #ffffff;
+    --gray: #838383;
+    --light-gray: #c7c8cd;
+
+    --light-red: #fc777a;
+    --red: #eb2438;
+    --medium-red: #c72d2d;
+    --dark-red: #cf1b2d;
+
+    --stroke: rgba(255, 255, 255, 0.08);
+    --icon: #888888;
+
+    --button: #18181a;
+    --button-hover: #232327;
+    --button-press: #2a2a2a;
+    --button-active-hover: #f9f9f9;
+    --button-press-transparent: rgba(225, 225, 225, 0.15);
+
+    --nav-press: #0c0c10;
+    --nav-hover: lch(89.53% 0.01 296.81 / 0.1);
+
+    --sidebar-active: var(--secondary);
+    --sidebar-stroke: #0f0f11;
+
+    --sidebar-hover: #222226;
+    --sidebar-icon: #dfdfe2;
+    --sidebar-press: var(--red);
+
+    --padding: 12px;
+    --border-radius: 12px;
+    --border-radius-lg: 24px;
+
+    --sidebar-width: 4rem;
+    --sidebar-inner-padding: 4px;
+
+    --switcher-padding: 3.5px;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("/fonts/OutfitVar.ttf") format("truetype");
+}
+
+html,
+body {
+    background-color: var(--brand);
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    overscroll-behavior-y: none;
+}
+
+* {
+    font-family: "Outfit", monospace;
+    user-select: none;
+    scrollbar-width: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::selection {
+    color: var(--primary);
+    background: var(--brand);
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    -webkit-touch-callout: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+svg,
+img {
+    pointer-events: none;
+}
+
+button,
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 13px;
+    gap: 6px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 18px;
+    cursor: pointer;
+    background-color: var(--button);
+}
+
+:focus-visible {
+    outline: none;
+}
+
+a:not(.sidebar-tab):not(.subnav-tab):focus-visible {
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.button.active {
+    color: var(--primary);
+    background-color: var(--secondary);
+}
+
+@media (hover: hover) {
+    .button:hover {
+        background-color: var(--button-hover);
+    }
+
+    .button.active:hover {
+        background-color: var(--button-active-hover);
+    }
+}
+
+.button:active {
+    background-color: var(--button-press);
+}
+
+.button.active:active {
+    background-color: var(--button-active-hover);
+}
+
+button[disabled] {
+    cursor: default;
+}
+
+input {
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.center {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    margin-block: 0;
+}
+
+h1 {
+    font-size: 24px;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-size: 24px;
+    letter-spacing: -1px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+h5 {
+    font-size: 12px;
+}
+
+h6 {
+    font-size: 10px;
+}
+
+@keyframes modal-in {
+    from {
+        transform: scale(0.4);
+        opacity: 0;
+    }
+    35% {
+        opacity: 1;
+    }
+    75% {
+        transform: scale(1);
+    }
+}
+
+@keyframes modal-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}

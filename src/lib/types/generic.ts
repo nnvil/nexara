@@ -1,0 +1,11 @@
+export type RecursivePartial<Type> = {
+    [Key in keyof Type]?: Type[Key] extends (infer ElementType)[]
+        ? RecursivePartial<ElementType>[]
+        : Type[Key] extends object | undefined
+        ? RecursivePartial<Type[Key]>
+        : Type[Key];
+};
+
+export type DefaultImport<T> = () => Promise<{ default: T }>;
+export type Optional<T> = T | undefined;
+export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
