@@ -2,30 +2,30 @@
     export let sectionTitle: string = "";
 </script>
 
-<div id="subnav-section">
+<div id="sidebar-section">
     {#if sectionTitle}
-        <div id="subnav-section-title">
+        <div id="sidebar-section-title">
             {sectionTitle}
         </div>
     {/if}
-    <div id="subnav-section-categories">
+    <div id="sidebar-section-categories">
         <slot></slot>
     </div>
 </div>
 
 <style>
-    #subnav-section,
-    #subnav-section-categories {
+    #sidebar-section,
+    #sidebar-section-categories {
         display: flex;
         flex-direction: column;
     }
 
-    #subnav-section {
+    #sidebar-section {
         gap: 6px;
         border-radius: var(--border-radius);
     }
 
-    #subnav-section-title {
+    #sidebar-section-title {
         font-size: 12.5px;
         font-weight: 500;
         color: var(--gray);
@@ -33,13 +33,13 @@
     }
 
     @media screen and (max-width: 750px) {
-        #subnav-section-categories {
+        #sidebar-section-categories {
             background: var(--button);
             border-radius: var(--border-radius);
             overflow-x: hidden;
         }
 
-        #subnav-section-title {
+        #sidebar-section-title {
             padding-left: calc(7px * 1.5);
         }
     }

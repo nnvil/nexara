@@ -6,7 +6,8 @@
         changePassword,
         validatePassword,
     } from "$lib/api/auth";
-    import env from "$lib/env";
+    import { api } from "$lib/api/client";
+    import env, { socialLinks } from "$lib/env";
     import { createDialog } from "$lib/state/dialogs";
     import { user } from "$lib/stores/user";
     import { formatDate } from "$lib/utils/dateConverter.js";
@@ -16,7 +17,9 @@
     $: email = $user?.email || "";
     $: memberSince = $user?.createdAt ? formatDate($user.createdAt) : "";
 
-    function handleUploadSuccess() {}
+    function handleUploadSuccess({ avatarUrl }: { avatarUrl: string }) {
+        avatar = avatarUrl;
+    }
 
     function handleFileError(event: CustomEvent<string>) {
         alert(event.detail);
@@ -33,7 +36,7 @@
     <main id="user-details">
         <div class="user-container">
             <div class="profile-picture">
-                <FileReceiver
+                <!-- <FileReceiver
                     id="avatar-input"
                     uploadUrl={`${env.api}/users/me/avatar`}
                     onSuccess={handleUploadSuccess}
@@ -47,7 +50,51 @@
                     <div class="avatar-overlay">
                         <Pencil />
                     </div>
-                </FileReceiver>
+                </FileReceiver> -->
+                <div>
+                    <img
+                        class="profile-picture"
+                        src={avatar}
+                        alt="Profile Picture"
+                    />
+                    <div
+                        tabindex="0"
+                        class="avatar-overlay dropdown dropdown-right"
+                    >
+                        <div>
+                            <Pencil />
+                        </div>
+                        <div
+                            tabindex="-1"
+                            class="dropdown-menu menu dropdown-content"
+                        >
+                            <FileReceiver
+                                id="avatar-input"
+                                uploadUrl={`${env.api}/users/me/avatar`}
+                                onSuccess={handleUploadSuccess}
+                                on:error={handleFileError}
+                            >
+                                <button>Zmień awatar</button>
+                            </FileReceiver>
+                            <button
+                                on:click={() => {
+                                    try {
+                                        api.delete("/users/me/avatar");
+                                        avatar = `${env.api}/public/avatars/default.png`;
+                                    } catch (error) {
+                                        createDialog({
+                                            type: "base",
+                                            id: "error",
+                                            description:
+                                                "Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.",
+                                            title: "Oopsie daisy!",
+                                        });
+                                    }
+                                }}>Usuń awatar</button
+                            >
+                        </div>
+                    </div>
+                </div>
             </div>
             <h1>{username}</h1>
         </div>
@@ -253,8 +300,7 @@
                 id: "delete-account",
                 type: "base",
                 title: "Usunięcie konta",
-                description:
-                    'W celu usunięcia konta, stwórz nowe zgłoszenie na kanale <b style="color: var(--brand)">#ticket</b> na naszym serwerze Discord.',
+                description: `W celu usunięcia konta, stwórz nowe zgłoszenie na kanale <b style="color: var(--brand)">#ticket</b> na naszym serwerze <a style="color: var(--brand)" href="${socialLinks.discord}">Discord</a>.`,
             });
         }}
         class="btn-delete w-max">Usuń konto</button
@@ -306,7 +352,7 @@
         width: 80px;
         height: 80px;
         position: relative;
-        overflow: hidden;
+        /* overflow: hidden; */
         cursor: pointer;
     }
 
@@ -332,6 +378,31 @@
 
     .profile-picture:hover .avatar-overlay {
         opacity: 1;
+    }
+
+    .dropdown-menu {
+        display: flex;
+        flex-direction: column;
+
+        background: var(--primary);
+        box-shadow: 0 0 0 1px var(--stroke) inset;
+        border-radius: var(--border-radius);
+
+        padding: calc(var(--padding) / 2);
+        min-width: max-content;
+        gap: 5px;
+        margin: 2rem 0.25rem;
+    }
+
+    .dropdown-menu button {
+        font-size: 13.5px;
+        background: none;
+        border-radius: calc(var(--border-radius) / 2.5);
+        padding: calc(var(--padding) / 2) calc(var(--padding));
+    }
+
+    .dropdown-menu button:hover {
+        background: var(--button);
     }
 
     .input-container {

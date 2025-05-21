@@ -1,6 +1,7 @@
 <script lang="ts">
     import Nexara from "$components/icons/nexara.svelte";
     import { checkAuth, login } from "$lib/api/auth";
+    import { socialLinks } from "$lib/env";
     import { createDialog } from "$lib/state/dialogs";
     import { onMount } from "svelte";
 
@@ -122,8 +123,7 @@
                             id: "forgot-password",
                             type: "base",
                             title: "Resetowanie hasła",
-                            description:
-                                'W celu zresetowania hasła, stwórz nowe zgłoszenie na kanale <b style="color: var(--brand)">#ticket</b> na naszym serwerze Discord.',
+                            description: `W celu zresetowania hasła, stwórz nowe zgłoszenie na kanale <b style="color: var(--brand)">#ticket</b> na naszym serwerze <a style="color: var(--brand)" href="${socialLinks.discord}">Discord</a>.`,
                         });
                     }}>Zapomniałeś hasła?</a
                 >
@@ -227,5 +227,15 @@
         font-weight: 500;
         font-size: 0.85rem;
         color: var(--red);
+    }
+
+    @media screen and (max-width: 750px) {
+        #login-page {
+            padding: 2rem 2rem;
+        }
+    }
+
+    :global(#content) {
+        border-radius: 0 !important;
     }
 </style>

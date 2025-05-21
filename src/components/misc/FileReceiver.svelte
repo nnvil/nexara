@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { createEventDispatcher } from "svelte";
     import { createDialog } from "$lib/state/dialogs";
     import { user } from "$lib/stores/user";
 
@@ -13,11 +12,6 @@
     export let errorMessage = "Proszę wybrać plik PNG lub JPEG (max 5MB)";
     export let uploadUrl = "";
     export let onSuccess: (result: FileUploadResult) => void = () => {};
-
-    const dispatch = createEventDispatcher<{
-        error: string;
-        success: FileUploadResult;
-    }>();
 
     function isValidFile(file: File): boolean {
         const maxSize = 5 * 1024 * 1024; // 5MB in bytes
@@ -95,7 +89,6 @@
             );
 
             onSuccess(result);
-            window.location.reload();
         } catch (error) {
             const errorMsg = "Nie udało się zaktualizować zdjęcia profilowego";
             createDialog({

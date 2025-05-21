@@ -31,9 +31,9 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 
-<div id="{pageName}-page" class="subnav-page">
-    <div class="subnav-sidebar" class:back-visible={!isHome && isMobile}>
-        <div class="subnav-header">
+<div id="{pageName}-page" class="sidebar-page">
+    <div class="sidebar-sidebar" class:back-visible={!isHome && isMobile}>
+        <div class="sidebar-header">
             {#if isMobile}
                 {#if !isHome}
                     <a
@@ -46,7 +46,7 @@
                     </a>
                 {/if}
                 <h3
-                    class="subnav-page-title"
+                    class="sidebar-page-title"
                     aria-level="1"
                     tabindex="-1"
                     data-first-focus
@@ -58,14 +58,14 @@
                     {/if}
                 </h3>
             {:else}
-                <h2 class="subnav-page-title" aria-level="1">
+                <h2 class="sidebar-page-title" aria-level="1">
                     {homeTitle}
                 </h2>
             {/if}
         </div>
 
         <nav
-            class="subnav-navigation"
+            class="sidebar-navigation"
             class:visible-mobile={isMobile && isHome}
         >
             <slot name="navigation"></slot>
@@ -76,7 +76,7 @@
     {#if !isMobile || !isHome}
         <main
             id="{pageName}-page-content"
-            class="subnav-page-content"
+            class="sidebar-page-content"
             tabindex="-1"
             data-first-focus
         >
@@ -86,52 +86,52 @@
 </div>
 
 <style>
-    .subnav-page {
-        --subnav-nav-width: 250px;
-        --subnav-padding: 26px;
-        --subnav-padding-small: calc(var(--subnav-padding) - var(--padding));
+    .sidebar-page {
+        --sidebar-nav-width: 250px;
+        --sidebar-padding: 26px;
+        --sidebar-padding-small: calc(var(--sidebar-padding) - var(--padding));
         display: grid;
         width: 100%;
-        grid-template-columns: var(--subnav-nav-width) 1fr;
+        grid-template-columns: var(--sidebar-nav-width) 1fr;
         overflow: hidden;
-        padding-left: var(--subnav-padding);
-        column-gap: calc(var(--subnav-padding) / 2);
+        padding-left: var(--sidebar-padding);
+        column-gap: calc(var(--sidebar-padding) / 2);
     }
 
-    .subnav-page-content {
+    .sidebar-page-content {
         display: flex;
         flex-direction: column;
         width: fit-content;
-        padding: calc(var(--subnav-padding) / 2);
+        padding: calc(var(--sidebar-padding) / 2);
         overflow-y: scroll;
     }
 
-    .subnav-sidebar,
-    .subnav-navigation {
+    .sidebar-sidebar,
+    .sidebar-navigation {
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
     }
 
-    .subnav-sidebar {
-        width: var(--subnav-nav-width);
-        padding-top: var(--subnav-padding);
+    .sidebar-sidebar {
+        width: var(--sidebar-nav-width);
+        padding-top: var(--sidebar-padding);
     }
 
-    .subnav-sidebar.back-visible {
+    .sidebar-sidebar.back-visible {
         overflow: visible;
     }
 
-    .subnav-sidebar {
+    .sidebar-sidebar {
         gap: var(--padding);
     }
 
-    .subnav-navigation {
+    .sidebar-navigation {
         gap: var(--padding);
         padding-bottom: var(--padding);
     }
 
-    .subnav-header {
+    .sidebar-header {
         --back-padding: calc(var(--padding) / 2);
     }
 
@@ -159,37 +159,37 @@
     }
 
     @media screen and (max-width: 1000px) {
-        .subnav-page {
+        .sidebar-page {
             column-gap: 0;
         }
     }
 
     @media screen and (max-width: 750px) {
-        .subnav-page {
-            --subnav-nav-width: 100%;
+        .sidebar-page {
+            --sidebar-nav-width: 100%;
             display: flex;
             flex-direction: column;
             grid-template-columns: 1fr;
             padding: 0;
         }
 
-        .subnav-navigation {
+        .sidebar-navigation {
             padding: var(--padding);
             padding-bottom: calc(var(--padding) * 2);
             display: none;
         }
 
-        .subnav-navigation.visible-mobile {
+        .sidebar-navigation.visible-mobile {
             display: flex;
         }
 
-        .subnav-page-content {
+        .sidebar-page-content {
             padding: var(--padding) 0;
             padding-top: 0;
             max-width: unset;
         }
 
-        .subnav-header {
+        .sidebar-header {
             display: flex;
             align-items: center;
             position: sticky;
@@ -198,12 +198,12 @@
             justify-content: center;
         }
 
-        .subnav-sidebar {
+        .sidebar-sidebar {
             gap: 0px;
             padding: 0;
         }
 
-        .subnav-page-title {
+        .sidebar-page-title {
             display: flex;
             flex-direction: row;
             align-items: center;

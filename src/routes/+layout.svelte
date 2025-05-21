@@ -2,8 +2,15 @@
     import { page } from "$app/stores";
     import env from "$lib/env";
     import { user } from "$lib/stores/user";
+    import { isLoading } from "$lib/stores/loading";
+    import { onMount } from "svelte";
+    import NexaraLogo from "$components/icons/nexara.svelte";
 
     import Dialog from "$components/dialog/Dialog.svelte";
+
+    onMount(() => {
+        setTimeout(() => isLoading.set(false), 500);
+    });
 
     $: if ($page.data.user) {
         user.set({
@@ -44,6 +51,14 @@
 
 <div lang="ts">
     <div id="container">
+        {#if $isLoading}
+            <div class="loading-overlay center">
+                <div class="logo">
+                    <NexaraLogo size={64} />
+                </div>
+            </div>
+        {/if}
+
         <Dialog />
         <div id="content">
             <slot></slot>
@@ -53,6 +68,19 @@
 
 <style>
     @import "../app.css";
+
+    .loading-overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        background-color: var(--primary);
+        z-index: 1000;
+    }
+
+    .logo {
+        color: var(--brand);
+        animation: pulse 2s infinite;
+    }
 
     #container {
         display: flex;
@@ -69,6 +97,5 @@
         background-color: var(--primary);
         border-radius: var(--border-radius);
         margin: calc(var(--sidebar-inner-padding) + 2px);
-        position: relative;
     }
 </style>

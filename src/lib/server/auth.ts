@@ -15,9 +15,7 @@ export async function validateTokens(
     try {
         const response = await fetch(`${env.api}/users/me`, {
             method: "GET",
-            headers: {
-                Cookie: `access=${accessToken}; refresh=${refreshToken}`,
-            },
+            credentials: "include",
         });
 
         return response.ok;

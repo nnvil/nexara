@@ -33,10 +33,6 @@ export async function logout(): Promise<void> {
     window.location.href = "/login";
 }
 
-export async function getUser(): Promise<User> {
-    return api.get("/users/me");
-}
-
 export function hasAuthCookies(): boolean {
     if (typeof document === "undefined") return false;
     return (
@@ -47,7 +43,7 @@ export function hasAuthCookies(): boolean {
 
 export async function checkAuth(): Promise<boolean> {
     try {
-        await getUser();
+        await api.get("/users/me");
         return true;
     } catch (error) {
         return false;

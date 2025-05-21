@@ -16,22 +16,22 @@
     }
 </script>
 
-<a class="subnav-button" href={path} class:active={isActive} role="button">
-    <div class="subnav-tab" style="--icon-color: var(--{iconColor})">
+<a class="sidebar-button" href={path} class:active={isActive} role="button">
+    <div class="sidebar-tab" style="--icon-color: var(--{iconColor})">
         <div class="tab-icon">
             <svelte:component this={icon} />
         </div>
-        <div class="subnav-tab-text" style="color: var(--{textColor})">
+        <div class="sidebar-tab-text" style="color: var(--{textColor})">
             {title}
         </div>
     </div>
-    <div class="subnav-tab-chevron">
+    <div class="sidebar-tab-chevron">
         <IconChevronRight />
     </div>
 </a>
 
 <style>
-    .subnav-button {
+    .sidebar-button {
         --small-padding: 4px;
         --big-padding: 6px;
         display: flex;
@@ -50,7 +50,7 @@
         cursor: pointer;
     }
 
-    .subnav-tab {
+    .sidebar-tab {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -62,18 +62,18 @@
         padding: var(--small-padding);
     }
 
-    .subnav-button .tab-icon :global(svg) {
+    .sidebar-button .tab-icon :global(svg) {
         stroke-width: 2px;
         stroke: var(--brand);
         height: 20px;
         width: 20px;
     }
 
-    .subnav-button:not(.active) .tab-icon :global(svg) {
+    .sidebar-button:not(.active) .tab-icon :global(svg) {
         stroke: var(--icon-color);
     }
 
-    .subnav-tab-chevron :global(svg) {
+    .sidebar-tab-chevron :global(svg) {
         display: none;
         stroke: var(--light-gray);
         height: 18px;
@@ -81,34 +81,34 @@
     }
 
     @media (hover: hover) {
-        .subnav-button:hover {
+        .sidebar-button:hover {
             background: var(--nav-hover);
         }
     }
 
-    .subnav-button:active,
-    .subnav-button:focus:hover:not(.active) {
+    .sidebar-button:active,
+    .sidebar-button:focus:hover:not(.active) {
         background: var(--nav-press);
     }
 
-    .subnav-button.active {
+    .sidebar-button.active {
         background: var(--nav-hover);
         cursor: default;
     }
 
-    .subnav-tab-text {
+    .sidebar-tab-text {
         font-size: 14.5px;
     }
 
     @media screen and (max-width: 750px) {
-        .subnav-button {
+        .sidebar-button {
             --big-padding: 7px;
             background: none;
             padding: var(--big-padding) 11px;
             border-radius: 0;
         }
 
-        .subnav-tab-chevron :global(svg) {
+        .sidebar-tab-chevron :global(svg) {
             display: block;
         }
     }

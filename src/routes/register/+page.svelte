@@ -332,4 +332,14 @@
         font-weight: 500;
         font-size: 14.5px;
     }
+
+    @media screen and (max-width: 750px) {
+        #register-page {
+            padding: 1.5rem 2.5rem;
+        }
+    }
+
+    :global(#content) {
+        border-radius: 0 !important;
+    }
 </style>

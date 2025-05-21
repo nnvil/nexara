@@ -115,11 +115,6 @@ button,
     outline: none;
 }
 
-a:not(.sidebar-tab):not(.subnav-tab):focus-visible {
-    outline-offset: 3px;
-    border-radius: 2px;
-}
-
 .button.active {
     color: var(--primary);
     background-color: var(--secondary);
