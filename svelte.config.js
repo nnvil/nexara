@@ -53,6 +53,9 @@ const config = {
                 "frame-ancestors": ["none"],
             },
         },
+        env: {
+            publicPrefix: "DEFAULT_",
+        },
         version: {
             pollInterval: 60000,
         },
