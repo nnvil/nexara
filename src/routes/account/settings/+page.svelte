@@ -36,21 +36,6 @@
     <main id="user-details">
         <div class="user-container">
             <div class="profile-picture">
-                <!-- <FileReceiver
-                    id="avatar-input"
-                    uploadUrl={`${env.api}/users/me/avatar`}
-                    onSuccess={handleUploadSuccess}
-                    on:error={handleFileError}
-                >
-                    <img
-                        class="profile-picture"
-                        src={avatar}
-                        alt="Profile Picture"
-                    />
-                    <div class="avatar-overlay">
-                        <Pencil />
-                    </div>
-                </FileReceiver> -->
                 <div>
                     <img
                         class="profile-picture"
